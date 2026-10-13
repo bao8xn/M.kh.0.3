@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>طرح پیشنهادی جامع | توسعه سبد محصولات نوین غذایی و زیرساخت بسته‌بندی</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- فونت وزیرمتن -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Vazirmatn', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Vazirmatn', system-ui, sans-serif;
+      background-color: #0b1120;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #10b981;
+    }
+    /* کادر بهینه‌شده تصاویر محصولات */
+    .product-img-box {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      border-radius: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem;
+      position: relative;
+      min-height: 240px;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .product-img-box:hover {
+      border-color: rgba(16, 185, 129, 0.4);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+    /* تصویر با نمایش کامل و بدون برش */
+    .product-img {
+      max-height: 18rem;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      border-radius: 0.75rem;
+      display: block;
+      margin: 0 auto;
+      transition: transform 0.3s ease;
+    }
+    .product-img:hover {
+      transform: scale(1.03);
+    }
+    /* تصاویر عریض */
+    .product-img-wide {
+      max-height: 22rem;
+      width: 100%;
+      object-fit: contain;
+      border-radius: 0.75rem;
+      display: block;
+      margin: 0 auto;
+      transition: transform 0.3s ease;
+    }
+    /* مخفی کردن تگ خالی قبل از ثبت لینک */
+    img:not([src]), img[src=""], img[src="#"] {
+      display: none;
+    }
+    /* آیکون بسیار ملایم پس‌زمینه تنها در صورتی که عکسی قرار نگرفته باشد */
+    .product-img-box::before {
+      content: '';
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='rgba(148,163,184,0.2)' stroke-width='1.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'/%3E%3C/svg%3E") no-repeat center;
+      pointer-events: none;
+    }
+    .product-img-box:has(img[src]:not([src=""]):not([src="#"]))::before {
+      display: none;
+    }
+  </style>
+</head>
+<body class="selection:bg-emerald-500 selection:text-white">
+
+  <!-- نوار پیشرفت مطالعه بالای صفحه -->
+  <div id="progress-bar" class="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-400 z-50 origin-right" style="transform: scaleX(0);"></div>
+
+  <!-- نوار ناوبری اصلی (Header سازگار با موبایل) -->
+  <header class="sticky top-0 z-40 backdrop-blur-xl bg-slate-950/85 border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20 text-white font-black text-lg shrink-0">
+          F
+        </div>
+        <div class="truncate">
+          <span class="text-[10px] sm:text-xs text-emerald-400 font-bold block leading-none mb-1">پروپوزال تجاری و نوآوری</span>
+          <h1 class="text-sm sm:text-lg font-extrabold text-slate-100 truncate">توسعه محصولات نوین غذایی & بسته‌بندی</h1>
+        </div>
+      </div>
+
+      <!-- منوی دسترسی سریع دسکتاپ -->
+      <nav class="hidden lg:flex items-center gap-1 text-sm font-medium text-slate-300">
+        <a href="#overview" class="px-3 py-2 rounded-lg hover:text-emerald-400 hover:bg-slate-800/60 transition">کلیات</a>
+        <a href="#portfolios" class="px-3 py-2 rounded-lg hover:text-emerald-400 hover:bg-slate-800/60 transition">سبدهای محصول</a>
+        <a href="#packaging" class="px-3 py-2 rounded-lg hover:text-emerald-400 hover:bg-slate-800/60 transition">چاپ و بسته‌بندی</a>
+        <a href="#business-model" class="px-3 py-2 rounded-lg hover:text-emerald-400 hover:bg-slate-800/60 transition">مدل عرضه</a>
+        <a href="#roadmap" class="px-3 py-2 rounded-lg hover:text-emerald-400 hover:bg-slate-800/60 transition">نقشه راه</a>
+        <a href="#risks" class="px-3 py-2 rounded-lg hover:text-emerald-400 hover:bg-slate-800/60 transition">ریسک‌ها</a>
+      </nav>
+
+      <div class="shrink-0">
+        <a href="#conclusion" class="text-xs sm:text-sm font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-3 sm:px-4 py-2 rounded-xl shadow-md transition whitespace-nowrap">
+          نتیجه‌گیری
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- معرفی کلی طرح (Hero Section) -->
+  <section id="overview" class="relative pt-10 sm:pt-14 pb-16 overflow-hidden border-b border-slate-800/60 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-5">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        طرح پیشنهادی جامع (پروپوزال تجاری و توسعه محصول)
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-5">
+        توسعه و تجاری‌سازی سبد محصولات غذایی <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300">نوآورانه، سلامت‌محور، آماده‌مصرف</span> و ایجاد زیرساخت یکپارچه چاپ و بسته‌بندی
+      </h1>
+
+      <p class="text-sm sm:text-lg text-slate-300 max-w-4xl leading-relaxed mb-8">
+        حوزه فعالیت: صنایع غذایی (FMCG)، غذاهای فراسودمند (Functional Foods)، محصولات آماده و نیمه‌آماده.
+      </p>
+
+      <!-- ویژگی‌های کلی -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl">
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+          <div class="text-[11px] text-slate-400 font-semibold mb-1">حوزه اصلی</div>
+          <div class="text-sm font-bold text-white">صنایع غذایی (FMCG)</div>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+          <div class="text-[11px] text-slate-400 font-semibold mb-1">نوع محصولات</div>
+          <div class="text-sm font-bold text-emerald-300">غذاهای فراسودمند (Functional Foods)</div>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+          <div class="text-[11px] text-slate-400 font-semibold mb-1">رویکرد تولید</div>
+          <div class="text-sm font-bold text-amber-300">محصولات آماده و نیمه‌آماده</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- معرفی تفصیلی سبدهای محصول -->
+  <section id="portfolios" class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-12">
+      <div class="text-emerald-400 font-bold text-xs uppercase mb-1">بخش اصلی پروپوزال</div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white">معرفی تفصیلی سبدهای محصول (Product Portfolios)</h2>
+      <p class="text-slate-400 text-sm mt-2">بررسی دقیق مشخصات فنی و فرمولاسیون ۸ لاین محصولی</p>
+    </div>
+
+    <div class="space-y-16 sm:space-y-20">
+
+      <!-- سبد اول -->
+      <div class="p-6 sm:p-9 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl">
+        <div class="pb-5 mb-7 border-b border-slate-800">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">سبد شماره ۱</span>
+          <h3 class="text-xl sm:text-2xl font-black text-white mt-2">اسنک‌ها و میان‌وعده‌های سلامت‌محور و فراسودمند (Healthy & Functional Snacks)</h3>
+        </div>
+
+        <div class="space-y-10">
+          
+          <!-- ۱.۱ پفک و اسنک سلامت جو دوسر -->
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <h4 class="text-base sm:text-lg font-bold text-emerald-300 mb-2">پفک و اسنک سلامت جو دوسر</h4>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              پایه جو دوسر (Oat)، پودر پنیر طبیعی، طعم‌دهنده‌های بومی‌سازی‌شده ایرانی؛ پروتئین بالا، کالری کنترل‌شده، غنی از فیبر مفید، بدون روغن ترانس.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5">
+              <!-- 🖼️ عکس شماره ۱: پفک Gazzak Corn -->
+              <div class="product-img-box">
+                <img src="" alt="پفک Gazzak Corn" class="product-img" loading="lazy">
+              </div>
+              <!-- 🖼️ عکس شماره ۲: پوستر اسنک گرچو -->
+              <div class="product-img-box">
+                <img src="" alt="اسنک گرچو" class="product-img" loading="lazy">
+              </div>
+              <!-- 🖼️ عکس شماره ۳: بسته‌های Kuna Pops -->
+              <div class="product-img-box">
+                <img src="" alt="Kuna Pops" class="product-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- ۱.۲ چیپس ترکیبی مغذی -->
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <h4 class="text-base sm:text-lg font-bold text-emerald-300 mb-2">چیپس ترکیبی مغذی (سبزیجات و پروتئین)</h4>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              ترکیب ۲۰٪ سیب‌زمینی + ۴۰٪ هویج + ۴۰٪ پروتئین وی (Whey)؛ بافت بسیار ترد، ارزش غذایی بالا، سیرکنندگی پایدار، کربوهیدرات بهینه‌شده.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5">
+              <!-- 🖼️ عکس شماره ۴: Simply Protein -->
+              <div class="product-img-box">
+                <img src="" alt="Simply Protein" class="product-img" loading="lazy">
+              </div>
+              <!-- 🖼️ عکس شماره ۵: PopCorners Protein -->
+              <div class="product-img-box">
+                <img src="" alt="PopCorners Protein" class="product-img" loading="lazy">
+              </div>
+              <!-- 🖼️ عکس شماره ۶: Sun Chips -->
+              <div class="product-img-box">
+                <img src="" alt="Sun Chips" class="product-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- ۱.۳ اسنک ترافل و کوکی‌های غنی‌شده پاکتی -->
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <h4 class="text-base sm:text-lg font-bold text-emerald-300 mb-2">اسنک ترافل و کوکی‌های غنی‌شده پاکتی</h4>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              پایه غالب پودر تخم‌مرغ کامل/سفیده، غنی از پروتئین و ویتامین‌ها؛ بسته‌بندی زیپ‌کیپ پاکتی، بدون افت کیفیت بافتی، طعم‌های ترند و مدرن.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+              <!-- 🖼️ عکس شماره ۷: کوکی Too Good Gourmet -->
+              <div class="product-img-box">
+                <img src="" alt="Too Good Gourmet" class="product-img" loading="lazy">
+              </div>
+              <!-- 🖼️ عکس شماره ۸: ترافل پروتئینی سالم -->
+              <div class="product-img-box">
+                <img src="" alt="Healthy & Protein Snack" class="product-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- ۱.۴ چوب‌شورهای پوشش‌دار -->
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <h4 class="text-base sm:text-lg font-bold text-emerald-300 mb-2">چوب‌شورهای پوشش‌دار (Coated Pretzels)</h4>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              چوب‌شور ترد غلات با روکش‌های فانتزی (خامه، شاتوت، انبه و میوه‌های استوایی)؛ ارتقای میان‌وعده اقتصادی به یک محصول لوکس جوان‌پسند.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+              <!-- 🖼️ عکس شماره ۹: چوب شور شکلاتی -->
+              <div class="product-img-box">
+                <img src="" alt="چوب‌شور شکلاتی" class="product-img" loading="lazy">
+              </div>
+              <!-- 🖼️ عکس شماره ۱۰: پرِتزل پروتئینی Fitzels -->
+              <div class="product-img-box">
+                <img src="" alt="Fitzels" class="product-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- ۱.۵ اسنک‌های خشک لبنی و پروبیوتیک -->
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-emerald-300 mb-2">اسنک‌های خشک لبنی و پروبیوتیک</h4>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                  پنیر خشک‌شده پفکی (Puffed Dried Cheese)، میکروارگانیسم‌های پروبیوتیک؛ کالری پایین، پروتئین بسیار متراکم، ترد، بی‌نیاز از نگهداری در یخچال.
+                </p>
+              </div>
+              <!-- 🖼️ عکس شماره ۱۱: مکعب پنیر خشک‌شده -->
+              <div class="product-img-box">
+                <img src="" alt="پنیر خشک پفکی" class="product-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- ۱.۶ مکعب‌های ماست ژله‌ای/پاستیلی -->
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-emerald-300 mb-2">مکعب‌های ماست ژله‌ای/پاستیلی</h4>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                  ماست پروبیوتیک تغلیظ‌شده، ژلاتین هیدرولیزشده طبیعی، عصاره میوه؛ بافت ژله‌ای-پاستیلی اشتهاآور، کلسیم بالا، میان‌وعده سالم کودکان و بزرگسالان.
+                </p>
+              </div>
+              <!-- 🖼️ عکس شماره ۱۲: مکعب ماست پروبیوتیک eath+ -->
+              <div class="product-img-box">
+                <img src="" alt="eath+ Probiotic Bites" class="product-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- ۱.۷ مکعب‌های فراسودمند بانوان -->
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <h4 class="text-base sm:text-lg font-bold text-emerald-300 mb-2">مکعب‌های فراسودمند بانوان (Nutraceutical Cubes)</h4>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              آهن ریزپوشانی‌شده (Microencapsulated)، فولیک اسید، کلاژن، ویتامین‌های گروه B؛ تسکین‌بخش و مقوی ویژه دوران قاعدگی بانوان، عرضه تخصصی در داروخانه‌ها و دراگ‌استورها.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+              <!-- 🖼️ عکس شماره ۱۳: بسته مکمل UHA -->
+              <div class="product-img-box">
+                <img src="" alt="UHA Gummy Supplement" class="product-img" loading="lazy">
+              </div>
+              <!-- 🖼️ عکس شماره ۱۴: تجربه مصرف مکمل -->
+              <div class="product-img-box">
+                <img src="" alt="مصرف مکمل بانوان" class="product-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- سبد دوم -->
+      <div class="p-6 sm:p-9 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl">
+        <div class="pb-5 mb-7 border-b border-slate-800">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">سبد شماره ۲</span>
+          <h3 class="text-xl sm:text-2xl font-black text-white mt-2">شیرینی‌جات مدرن، تک‌نفره و ماندگار (Smart & Shelf-Stable Confectionery)</h3>
+        </div>
+
+        <div class="space-y-8">
+          
+          <!-- ۲.۱ کاپ‌کیک فوری لیوانی ماکروویوی -->
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <h4 class="text-base sm:text-lg font-bold text-amber-300 mb-2">کاپ‌کیک فوری لیوانی ماکروویوی (Microwave Mug Cake)</h4>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              پودر فرموله‌شده داخل لیوان کاغذی مقاوم به حرارت؛ تنها با افزودن آب و ۱ الی ۲ دقیقه قرارگیری در ماکروویو آماده مصرف می‌شود (ویژه دانشجویان و شاغلین).
+            </p>
+            <!-- 🖼️ عکس شماره ۱۵: رندر کاپ‌کیک فوری لیوانی -->
+            <div class="product-img-box mt-5">
+              <img src="" alt="کیک لیوانی فوری ماکروویوی" class="product-img-wide" loading="lazy">
+            </div>
+          </div>
+
+          <!-- ۲.۲ شیرینی‌های تک‌نفره با ماندگاری بالا -->
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <h4 class="text-base sm:text-lg font-bold text-amber-300 mb-2">شیرینی‌های تک‌نفره با ماندگاری بالا</h4>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              فرمولاسیون بهینه‌شده برای ماندگاری بیش از دو هفته بدون بیاتی، مناسب مصرف سریع انفرادی بدون نیاز به خرید حجم بالای قنادی.
+            </p>
+          </div>
+
+          <!-- ۲.۳ شیرینی‌های تعاملی دو فازی -->
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <h4 class="text-base sm:text-lg font-bold text-amber-300 mb-2">شیرینی‌های تعاملی دو فازی (Interactive / DIY Pastries)</h4>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              بسته‌بندی تفکیک‌شده دو تکه؛ پایه شیرینی در یک بخش و ساشه سس/مغزی در بخش دیگر که مصرف‌کننده شخصاً تزریق می‌کند (تسهیل عرضه فروشگاهی و حذف دردسر نگهداری سس‌های متعدد).
+            </p>
+            <!-- 🖼️ عکس شماره ۱۶: بسته شیرینی تعاملی فانتزن -->
+            <div class="product-img-box mt-5">
+              <img src="" alt="شیرینی تعاملی دوفازی" class="product-img-wide" loading="lazy">
+            </div>
+          </div>
+
+          <!-- ۲.۴ شیرینی‌های شبه‌خامه‌ای بدون نیاز به یخچال -->
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <h4 class="text-base sm:text-lg font-bold text-amber-300 mb-2">شیرینی‌های شبه‌خامه‌ای بدون نیاز به یخچال</h4>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              استفاده از بافت‌های پایدار هوادهی‌شده نظیر مرنگ تثبیت‌شده یا مغزی بستنی زمستانی؛ حفظ حس لطیف خامه، کالری پایین و حذف نیاز به زنجیره سرد.
+            </p>
+            <!-- 🖼️ عکس شماره ۱۷: شیرینی ناپلئونی تک‌نفره -->
+            <div class="product-img-box mt-5">
+              <img src="" alt="شیرینی ناپلئونی بدون نیاز به یخچال" class="product-img-wide" loading="lazy">
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- سبد سوم -->
+      <div class="p-6 sm:p-9 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl">
+        <div class="pb-5 mb-7 border-b border-slate-800">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-sky-500/10 text-sky-400 border border-sky-500/20">سبد شماره ۳</span>
+          <h3 class="text-xl sm:text-2xl font-black text-white mt-2">غذاهای فوری، نیمه‌آماده و نودل‌های توسعه‌یافته (Instant & Ready Meals)</h3>
+        </div>
+
+        <div class="space-y-8">
+          
+          <!-- ۳.۱ نودل‌های طعم‌دار با سس‌های آسیایی تخصصی -->
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <h4 class="text-base sm:text-lg font-bold text-sky-300 mb-2">نودل‌های طعم‌دار با سس‌های آسیایی تخصصی</h4>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              طعم‌دار کردن خود رشته نودل در فرآیند اکستروژن همراه با سس‌های مایع ساشه‌ای غلیظ (سویا سس، روغن کنجد دودی، چیلی).
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+              <!-- 🖼️ عکس شماره ۱۸: کلاژ نودل‌های رامن -->
+              <div class="product-img-box">
+                <img src="" alt="نودل‌های آسیایی" class="product-img" loading="lazy">
+              </div>
+              <!-- 🖼️ عکس شماره ۱۹: رندر نودل سبزیجات -->
+              <div class="product-img-box">
+                <img src="" alt="نودل سبزیجات" class="product-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- ۳.۲ تاپینگ‌های خشک فوری سبزیجات و پروتئین -->
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <h4 class="text-base sm:text-lg font-bold text-sky-300 mb-2">تاپینگ‌های خشک فوری سبزیجات و پروتئین</h4>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              مخلوط خشک‌شده هویج، ذرت شیرین، قارچ و سبزیجات معطر با قابلیت بازگشت سریع بافت در آب جوش جهت افزودن به نودل، سوپ، و سس ماکارونی.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+              <!-- 🖼️ عکس شماره ۲۰: پاکت تاپینگ TOPSUN -->
+              <div class="product-img-box">
+                <img src="" alt="تاپینگ خشک TOPSUN" class="product-img" loading="lazy">
+              </div>
+              <!-- 🖼️ عکس شماره ۲۱: کاسه نودل با تاپینگ -->
+              <div class="product-img-box">
+                <img src="" alt="نودل با تاپینگ TOPSUN" class="product-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- سبد چهارم -->
+      <div class="p-6 sm:p-9 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl">
+        <div class="pb-5 mb-7 border-b border-slate-800">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20">سبد شماره ۴</span>
+          <h3 class="text-xl sm:text-2xl font-black text-white mt-2">ادویه‌ها، چاشنی‌ها و تاپینگ‌های کاربردی (Functional Seasonings & Toppings)</h3>
+        </div>
+
+        <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
+            <div>
+              <h4 class="text-base sm:text-lg font-bold text-purple-300 mb-2">ادویه-تاپینگ‌های سس‌شونده</h4>
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                ترکیبات گرانوله ادویه و هیدروکلوئیدهای طبیعی؛ در تماس با آبلیمو یا روغن سالاد بلافاصله بافت سس‌مانند به خود می‌گیرد و غذای ساده را لذیذ می‌کند.
+              </p>
+            </div>
+            <!-- 🖼️ عکس شماره ۲۲: تاپینگ مزید -->
+            <div class="product-img-box">
+              <img src="" alt="تاپینگ تخم‌مرغ مزید" class="product-img" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- سبد پنجم -->
+      <div class="p-6 sm:p-9 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl">
+        <div class="pb-5 mb-7 border-b border-slate-800">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20">سبد شماره ۵</span>
+          <h3 class="text-xl sm:text-2xl font-black text-white mt-2">ترشیجات تخمیری و محصولات غذایی تحت وکیوم (Fermented & Vacuum-Packed Foods)</h3>
+        </div>
+
+        <div class="space-y-8">
+          
+          <!-- ۵.۱ کیمچی بومی‌سازی‌شده -->
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <h4 class="text-base sm:text-lg font-bold text-rose-300 mb-2">کیمچی بومی‌سازی‌شده در طعم‌های متنوع</h4>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              تولید کیمچی تخمیری کره‌ای در طعم‌های تند، ملایم و سیردار برای پوشش خلأ برندهای سنتی.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+              <!-- 🖼️ عکس شماره ۲۳: جار کیمچی Ocean's Halo -->
+              <div class="product-img-box">
+                <img src="" alt="Ocean's Halo Kimchi" class="product-img" loading="lazy">
+              </div>
+              <!-- 🖼️ عکس شماره ۲۴: پاکت کیمچی Cleveland Kitchen -->
+              <div class="product-img-box">
+                <img src="" alt="Cleveland Kitchen Kimchi" class="product-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- ۵.۲ سبزیجات طعم‌دار وکیوم‌شده -->
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-rose-300 mb-2">سبزیجات طعم‌دار وکیوم‌شده با ماندگاری چندماهه</h4>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                  بسته‌بندی وکیوم قارچ انوکی (Enoki)، فلفل‌های مزه‌دار و بیبی‌کروت با ماندگاری طولانی بدون مواد نگهدارنده مضر.
+                </p>
+              </div>
+              <!-- 🖼️ عکس شماره ۲۵: قارچ انوکی وکیوم -->
+              <div class="product-img-box">
+                <img src="" alt="قارچ انوکی وکیوم" class="product-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- ۵.۳ غذاهای اصیل ایرانی وکیوم‌شده نیمه‌آماده -->
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <h4 class="text-base sm:text-lg font-bold text-rose-300 mb-2">غذاهای اصیل ایرانی وکیوم‌شده نیمه‌آماده</h4>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              پخت اولیه و وکیوم خوراک‌های سنتی ایرانی با آماده‌سازی چند دقیقه‌ای در تابه یا ماکروویو.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- سبد ششم -->
+      <div class="p-6 sm:p-9 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl">
+        <div class="pb-5 mb-7 border-b border-slate-800">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-orange-500/10 text-orange-400 border border-orange-500/20">سبد شماره ۶</span>
+          <h3 class="text-xl sm:text-2xl font-black text-white mt-2">خمیرها و پوره‌های غلیظ چاشنی (Concentrated Flavor Pastes & Marinades)</h3>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <h4 class="text-base sm:text-lg font-bold text-orange-300 mb-2">خمیر غلیظ فلفل و گوجه تلفیقی</h4>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              پوره غلیظ و قدرتمند با کاربرد آسان جهت رنگ و طعم‌دهی عمیق به انواع خورش و خوراک.
+            </p>
+          </div>
+
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <h4 class="text-base sm:text-lg font-bold text-orange-300 mb-2">خمیرهای تخصصی پخت خورش‌های ایرانی</h4>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              خمیر متمرکز قورمه‌سبزی (سبزیجات سرخ‌شده تغلیظ‌شده با چاشنی لیمو عمانی)، خمیر قیمه و خمیر پخت مرغ جهت جاافتادن فوری غذا.
+            </p>
+          </div>
+
+          <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+            <h4 class="text-base sm:text-lg font-bold text-orange-300 mb-2">مرینیتورهای متمرکز گوشت و کباب</h4>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              پوره‌های تغلیظ‌شده باربیکیو و زعفرانی برای طعم‌دار کردن و تردسازی سریع گوشت و مرغ.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+              <!-- 🖼️ عکس شماره ۲۶: تیوپ تک خمیر فلفل -->
+              <div class="product-img-box">
+                <img src="" alt="خمیر چاشنی تیوپی" class="product-img" loading="lazy">
+              </div>
+              <!-- 🖼️ عکس شماره ۲۷: سه تیوپ چاشنی فلفل قرمز -->
+              <div class="product-img-box">
+                <img src="" alt="مرینیتورهای چاشنی" class="product-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- سبد هفتم -->
+      <div class="p-6 sm:p-9 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl">
+        <div class="pb-5 mb-7 border-b border-slate-800">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-teal-500/10 text-teal-400 border border-teal-500/20">سبد شماره ۷</span>
+          <h3 class="text-xl sm:text-2xl font-black text-white mt-2">سبد هفتم: عرقیجات مدرن</h3>
+        </div>
+
+        <div class="bg-slate-950/60 p-5 sm:p-7 rounded-2xl border border-slate-800/80">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <div>
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed text-justify">
+                بازار عرقیجات سنتی با وجود گستردگی بالا، دچار کهنگی در نحوه عرضه و تجربه مصرف‌کننده است؛ مزیت رقابتی ما بازتعریف این حوزه از یک داروی سنتی و تلخ به یک «لایف‌استایل سلامت‌محور و مدرن» از طریق شخصی‌سازی است. با الهام از حس اعتماد و دوز دقیق ساشه‌های دارویی، می‌توان عصاره‌های گیاهی را در قالب ساشه‌های غلیظ دیتاکس، آب‌های معدنی غنی‌شده با سیروپ‌هایی مانند کاسنی، یا نوشیدنی‌های گازدار کم‌کالری با طبع گرم و سرد (نظیر زنجبیل) وارد سبد مصرف روزانه نسل جوان کرد و مصرف تفننی آب را به هیدراتاسیون عملکردی و هدفمند ارتقا داد.
+              </p>
+            </div>
+            <!-- 🖼️ عکس شماره ۲۸: بطری دیتاکس واتر -->
+            <div class="product-img-box">
+              <img src="" alt="آب دیتاکس Flor De Lima" class="product-img" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- سبد هشتم -->
+      <div id="packaging" class="p-6 sm:p-9 rounded-3xl bg-slate-900/90 border border-emerald-500/30 shadow-2xl">
+        <div class="pb-5 mb-7 border-b border-slate-800">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">زیرساخت اختصاصی و مزیت رقابتی</span>
+          <h3 class="text-xl sm:text-2xl font-black text-white mt-2">سبد هشتم: زیرساخت یکپارچه چاپ و بسته‌بندی (Dedicated In-House Packaging Facility)</h3>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex items-start gap-3">
+              <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center shrink-0 text-xs">۱</span>
+              <p class="text-slate-200 text-sm leading-relaxed">
+                راه‌اندازی واحد اختصاصی چاپ و پاکت‌سازی به موازات خطوط تولید مواد غذایی.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex items-start gap-3">
+              <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center shrink-0 text-xs">۲</span>
+              <p class="text-slate-200 text-sm leading-relaxed">
+                تأمین بی‌واسطه پاکت‌های زیپ‌کیپ چندلایه، فیلم‌های وکیوم چندلایه، لیوان‌های کاغذی ضدحرارت و ساشه‌های مایع.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex items-start gap-3">
+              <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center shrink-0 text-xs">۳</span>
+              <p class="text-slate-200 text-sm leading-relaxed">
+                کاهش ۳۰ تا ۴۰ درصدی بهای تمام‌شده بسته‌بندی و ایجاد مزیت رقابتی پایدار و انعطاف در نوآوری طرح‌ها.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex items-start gap-3">
+              <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center shrink-0 text-xs">۴</span>
+              <p class="text-slate-200 text-sm leading-relaxed">
+                تبدیل واحد چاپخانه به مرکز درآمدزایی مستقل از طریق پذیرش سفارش‌های بسته‌بندی سایر شرکت‌ها در فازهای توسعه‌ای.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-8 rounded-2xl bg-slate-950 border border-emerald-500/30 flex flex-col justify-between">
+            <div>
+              <div class="text-emerald-400 text-xs font-bold mb-1">کاهش بهای تمام‌شده بسته‌بندی</div>
+              <div class="text-3xl sm:text-4xl font-black text-white mb-2">۳۰٪ تا ۴۰٪ صرفه‌جویی مستقیم</div>
+              <p class="text-slate-400 text-sm leading-relaxed mt-3">
+                مالکیت مستقیم زنجیره چاپ و بسته‌بندی نه تنها حاشیه سود پایدار ایجاد می‌کند، بلکه امکان چابکی بالا در اجرای ایده‌ها، تغییر طراحی پاکت‌ها و ارائه خدمات مستقل به سایر تولیدکنندگان را فراهم می‌سازد.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-800 text-xs text-emerald-400 font-bold">
+              تأمین پایدار بدون وابستگی به پیمانکاران خارجی
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- مدل کسب‌وکار و استراتژی عرضه -->
+  <section id="business-model" class="py-14 sm:py-20 bg-slate-950 border-t border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-10">
+        <span class="text-amber-400 font-bold text-xs uppercase mb-1 block">استراتژی ورود به بازار</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">مدل کسب‌وکار و استراتژی عرضه (Business Model & Go-To-Market)</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- کانال‌های توزیع -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-slate-900/80 border border-slate-800">
+          <h3 class="text-lg sm:text-xl font-bold text-white mb-3">کانال‌های توزیع هدفمند:</h3>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-5">
+            تفکیک دقیق کانال‌های فروش شامل داروخانه‌ها (محصولات سلامت بانوان)، هایپرمارکت‌ها و فروشگاه‌های زنجیره‌ای (اسنک‌های پروتئینی، ترشیجات، چاشنی‌ها)، کافه‌ها و سوپرمارکت‌ها (ترافل و شیرینی‌ها)، و بوفه‌ها و دانشگاه‌ها (کاپ‌کیک ماکروویوی و نودل‌ها).
+          </p>
+          <div class="space-y-2.5 text-xs sm:text-sm text-slate-300">
+            <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span><strong>داروخانه‌ها:</strong> لاین مکمل‌های سلامت بانوان</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+              <span><strong>فروشگاه‌های زنجیره‌ای:</strong> اسنک‌ها، ترشیجات و چاشنی‌ها</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+              <span><strong>کافه‌ها و سوپرمارکت‌ها:</strong> ترافل‌ها و شیرینی‌ها</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-rose-400"></span>
+              <span><strong>دانشگاه‌ها و بوفه‌ها:</strong> کاپ‌کیک فوری و نودل‌ها</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- قیمت‌گذاری رقابتی -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg sm:text-xl font-bold text-white mb-3">استراتژی قیمت‌گذاری رقابتی:</h3>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              بهره‌گیری از حاشیه سود ناشی از چاپخانه اختصاصی برای ارائه قیمت‌های رقابتی نسبت به نمونه‌های وارداتی یا سنتی.
+            </p>
+            <div class="mt-6 p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30 text-emerald-200 text-xs sm:text-sm leading-relaxed">
+              این مزیت رقابتی سبب دستیابی سریع به سهم بازار در فروشگاه‌های سراسری، ایجاد کشش تقاضا در قشر جوان و تضمین سودآوری پایدار می‌گردد.
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-800 text-xs text-slate-400">
+            مزیت قیمتی نسبت به برندهای وارداتی و لوکس بازار
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- نقشه راه و فازبندی اجرایی -->
+  <section id="roadmap" class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-10">
+      <span class="text-emerald-400 font-bold text-xs uppercase mb-1 block">برنامه اجرایی</span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white">۵. نقشه راه و فازبندی اجرایی (Roadmap & Implementation Phases)</h2>
+    </div>
+
+    <!-- جدول کامل مطابق فایل ورودی -->
+    <div class="overflow-x-auto rounded-2xl border border-slate-800 bg-slate-900/80">
+      <table class="w-full text-right text-xs sm:text-sm text-slate-300 min-w-[540px]">
+        <thead class="bg-slate-950 text-slate-400 font-bold border-b border-slate-800">
+          <tr>
+            <th class="p-4 sm:px-6 w-1/4">فاز اجرایی</th>
+            <th class="p-4 sm:px-6 w-1/4">بازه زمانی</th>
+            <th class="p-4 sm:px-6 w-1/2">اقدامات اصلی</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800">
+          <tr class="hover:bg-slate-800/40">
+            <td class="p-4 sm:px-6 font-bold text-white">فاز اول</td>
+            <td class="p-4 sm:px-6 text-emerald-400 font-medium">ماه‌های ۱ تا ۳</td>
+            <td class="p-4 sm:px-6">تحقیق و توسعه (R&D)، فرمولاسیون آزمایشگاهی، تست پایداری بافت و ماندگاری وکیوم</td>
+          </tr>
+          <tr class="hover:bg-slate-800/40">
+            <td class="p-4 sm:px-6 font-bold text-white">فاز دوم</td>
+            <td class="p-4 sm:px-6 text-teal-400 font-medium">ماه‌های ۴ تا ۶</td>
+            <td class="p-4 sm:px-6">تجهیز پایلوت تولید، اخذ مجوزهای بهداشتی و سیب سلامت، استقرار خطوط اولیه چاپ و بسته‌بندی</td>
+          </tr>
+          <tr class="hover:bg-slate-800/40">
+            <td class="p-4 sm:px-6 font-bold text-white">فاز سوم</td>
+            <td class="p-4 sm:px-6 text-amber-400 font-medium">ماه‌های ۷ تا ۹</td>
+            <td class="p-4 sm:px-6">راه‌اندازی آزمایشی، تولید اولیه اسنک‌های پروتئینی، کاپ‌کیک فوری و چاشنی‌ها، و تست بازار در مراکز منتخب</td>
+          </tr>
+          <tr class="hover:bg-slate-800/40">
+            <td class="p-4 sm:px-6 font-bold text-white">فاز چهارم</td>
+            <td class="p-4 sm:px-6 text-sky-400 font-medium">ماه‌های ۱۰ تا ۱۲</td>
+            <td class="p-4 sm:px-6">مقیاس‌پذیری تولید، عرضه سراسری سبدهای وکیوم و دارویی، و بازاریابی ظرفیت مازاد چاپخانه</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ارزیابی ریسک و برنامه‌های اقدام -->
+  <section id="risks" class="py-14 sm:py-20 bg-slate-950 border-t border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-10">
+        <span class="text-rose-400 font-bold text-xs uppercase mb-1 block">پایداری تجاری</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">ارزیابی ریسک و برنامه‌های اقدام (Risk Assessment & Mitigation)</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <div class="p-5 sm:p-6 rounded-2xl bg-slate-900 border border-slate-800">
+          <div class="text-xs font-bold text-rose-400 mb-2">ریسک ۱</div>
+          <h3 class="font-bold text-white text-base mb-2">ریسک ذائقه و پذیرش بازار</h3>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            انطباق فرمولاسیون‌های مدرن و بین‌المللی با ذائقه ایرانی و اجرای طرح‌های سمپلینگ.
+          </p>
+        </div>
+
+        <div class="p-5 sm:p-6 rounded-2xl bg-slate-900 border border-slate-800">
+          <div class="text-xs font-bold text-amber-400 mb-2">ریسک ۲</div>
+          <h3 class="font-bold text-white text-base mb-2">ریسک پایداری فاز خامه و شیرینی در دمای محیط</h3>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            کنترل دقیق فعالیت آبی، کاربرد پایدارکننده‌های خوراکی طبیعی و بسته‌بندی اتمسفر اصلاح‌شده (MAP).
+          </p>
+        </div>
+
+        <div class="p-5 sm:p-6 rounded-2xl bg-slate-900 border border-slate-800">
+          <div class="text-xs font-bold text-sky-400 mb-2">ریسک ۳</div>
+          <h3 class="font-bold text-white text-base mb-2">ریسک نوسان بهای مواد اولیه خاص</h3>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            عقد قراردادهای بلندمدت تأمین با تولیدکنندگان عمده داخلی پودر تخم‌مرغ و مکمل‌های پروتئینی.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- نتیجه‌گیری -->
+  <section id="conclusion" class="py-16 sm:py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <span class="text-emerald-400 text-xs font-bold uppercase tracking-wider block mb-2">جمع‌بندی نهایی</span>
+      <h2 class="text-2xl sm:text-3xl font-black text-white mb-6">نتیجه‌گیری (Conclusion)</h2>
+
+      <div class="p-6 sm:p-10 rounded-3xl bg-slate-900/90 border border-slate-800 shadow-2xl text-justify text-slate-200 text-sm sm:text-base leading-relaxed sm:leading-loose">
+        این طرح با رویکردی جامع، خلأ موجود میان تنقلات ناسالم سنتی و نیاز فزاینده جامعه به غذاهای سریع، مغذی و باکیفیت را پر می‌کند. پیوند نوآوری در محصول با زیرساخت مستقل چاپ و بسته‌بندی، بستری سودآور، پایدار و مقیاس‌پذیر برای تصاحب سهم بازار قابل توجه در صنعت FMCG ایجاد می‌نماید.
+      </div>
+
+      <div class="mt-8">
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm transition">
+          بازگشت به بالای صفحه ↑
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- فوتر -->
+  <footer class="py-6 bg-slate-950 border-t border-slate-900 text-center text-xs text-slate-500">
+    <p>طرح جامع توسعه سبد محصولات نوین غذایی و ایجاد زیرساخت یکپارچه چاپ و بسته‌بندی</p>
+  </footer>
+
+  <script>
+    // نوار پیشرفت اسکرول
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height);
+      document.getElementById('progress-bar').style.transform = `scaleX(${scrolled})`;
+    });
+  </script>
+
+</body>
+</html>
